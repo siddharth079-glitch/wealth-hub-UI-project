@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Life Dashboard</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background: #f4f6f8;
+        color: #333;
+    }
+    header {
+        background: #4CAF50;
+        color: white;
+        padding: 15px;
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+    }
+    nav {
+        display: flex;
+        justify-content: space-around;
+        background: #333;
+    }
+    nav a {
+        color: white;
+        text-decoration: none;
+        padding: 14px 20px;
+        display: block;
+    }
+    nav a:hover {
+        background: #4CAF50;
+    }
+    .container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        padding: 20px;
+    }
+    .card {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+        margin-top: 0;
+        color: #4CAF50;
+    }
+    button {
+        padding: 10px;
+        margin-top: 10px;
+        background: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:hover {
+        background: #45a049;
+    }
+    .status {
+        font-weight: bold;
+        color: #555;
+    }
+</style>
+</head>
+<body>
+
+<header>Smart Life Dashboard</header>
+
+<nav>
+    <a href="#smart-home">Smart Home</a>
+    <a href="#health">Health & Wellness</a>
+    <a href="#finance">Finance</a>
+</nav>
+
+<div class="container">
+    <!-- Smart Home -->
+    <div class="card" id="smart-home">
+        <h2>Smart Home</h2>
+        <p>Lights: <span class="status" id="lights-status">OFF</span></p>
+        <button onclick="toggleStatus('lights-status')">Toggle Lights</button>
+        <p>AC: <span class="status" id="ac-status">OFF</span></p>
+        <button onclick="toggleStatus('ac-status')">Toggle AC</button>
+        <p>Security: <span class="status" id="security-status">LOCKED</span></p>
+        <button onclick="toggleStatus('security-status')">Toggle Security</button>
+    </div>
+
+    <!-- Health & Wellness -->
+    <div class="card" id="health">
+        <h2>Health & Wellness</h2>
+        <p>Steps Today: <span id="steps">5,320</span></p>
+        <p>Heart Rate: <span id="heart">78 bpm</span></p>
+        <p>Sleep: <span id="sleep">7 hrs</span></p>
+        <button onclick="updateHealth()">Refresh Data</button>
+    </div>
+
+    <!-- Finance -->
+    <div class="card" id="finance">
+        <h2>Personal Finance</h2>
+        <p>Balance: ₹<span id="balance">50,000</span></p>
+        <p>Expenses: ₹<span id="expenses">15,000</span></p>
+        <p>Income: ₹<span id="income">25,000</span></p>
+        <button onclick="updateFinance()">Update Finance</button>
+    </div>
+</div>
+
+<script>
+function toggleStatus(id) {
+    const el = document.getElementById(id);
+    el.textContent = (el.textContent === 'OFF' || el.textContent === 'LOCKED') ? 
+                     (el.textContent === 'LOCKED' ? 'UNLOCKED' : 'ON') : 
+                     (el.textContent === 'ON' ? 'OFF' : 'LOCKED');
+}
+
+function updateHealth() {
+    document.getElementById("steps").textContent = Math.floor(Math.random() * 10000);
+    document.getElementById("heart").textContent = Math.floor(60 + Math.random() * 40) + " bpm";
+    document.getElementById("sleep").textContent = (6 + Math.floor(Math.random() * 3)) + " hrs";
+}
+
+function updateFinance() {
+    document.getElementById("balance").textContent = (40000 + Math.floor(Math.random() * 20000));
+    document.getElementById("expenses").textContent = (10000 + Math.floor(Math.random() * 10000));
+    document.getElementById("income").textContent = (20000 + Math.floor(Math.random() * 10000));
+}
+</script>
+
+</body>
+</html>
